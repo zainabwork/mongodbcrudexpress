@@ -1,13 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 const port= "3000";
 const todoRoutes = require("./routes/Todo");
 
 const app = express();
+
 try{
-    mongoose.connect("mongodb://127.0.0.1:27017/todoapp")
+    // mongoose.connect("mongodb://127.0.0.1:27017/todoapp")
+    mongoose.connect(process.env.MONGODB_URI)
 } catch (error) {
     console.log("Connected to db");
 }
